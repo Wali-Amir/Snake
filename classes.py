@@ -41,20 +41,11 @@ class Snake:
         self.take_step(new_head)
 
     def grow(self,invincible,grid):
-        new_row = self.head()[0]+self.direction[0]
-        new_col = self.head()[1]+self.direction[1]
-        if invincible:
-            if new_row>=grid[0]:
-                new_row = 0
-            elif new_row<0:
-                new_row = grid[0]-1
-            if new_col>=grid[1]:
-                new_col = 0
-            elif new_col<0:
-                new_col = grid[1]-1
-
-        new_head = (new_row,new_col)
-        self.body = self.body + [new_head]
+        new_row = self.body[0][0]-(self.body[1][0]-self.body[0][0])
+        new_col = self.body[0][1]-(self.body[1][1]-self.body[0][1])
+        
+        new_tail = (new_row,new_col)
+        self.body = [new_tail] + self.body
 
 class Apple:
     #PUBLIC position : TUPLE
@@ -109,3 +100,4 @@ class Game:
         self.apple.position = (random.randint(0,self.height-1),random.randint(0,self.width-1))
         while self.apple.position == self.snake.head():
             self.apple.position = (random.randint(0,self.height-1),random.randint(0,self.width-1))
+
