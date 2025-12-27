@@ -15,10 +15,10 @@ score = 0
 while not game_end:
     ourGame.render()
     moves = {"W":classes.UP,"A":classes.LEFT,"S":classes.DOWN,"D":classes.RIGHT,'':ourGame.snake.direction}
-    move = moves[input("W for UP, A for LEFT, S for DOWN, D for RIGHT, Nothing to keep going straight: ")]
+    move = moves[input("W for UP, A for LEFT, S for DOWN, D for RIGHT, Nothing to keep going straight: ").upper()]
     while (move == incompatible[ourGame.snake.direction]):
         print("That is an incompatible move")
-        move = moves[input("W for UP, A for LEFT, S for DOWN, D for RIGHT: ")]
+        move = moves[input("W for UP, A for LEFT, S for DOWN, D for RIGHT, Nothing to keep going straight: ").upper()]
 
     ourGame.snake.set_direction(move)
     ourGame.snake.make_move(move,invincible,grid)
@@ -36,6 +36,3 @@ while not game_end:
         if ourGame.snake.head()==part:
             game_end=True
             print(f"The snake has crashed into itself. The game has ended.\nYou scored {score} points")
-
-
-
